@@ -66,7 +66,7 @@ footer { background-color: var(--surface-color); color: var(--secondary-text); t
 .hamburger-icon div { background-color: var(--primary-text); width: 25px; height: 3px; margin: 5px 0; transition: 0.4s; }
 
 /* === LANDING OLDAL SPECIFIKUS STÍLUSOK === */
-.landing-page #hero { background-image: linear-gradient(to top, rgba(18, 18, 18, 0.8) 0%, rgba(18, 18, 18, 0.2) 60%, transparent 100%), url('https://i.imgur.com/htNmvJK.jpeg'); background-size: cover; background-position: center 25%; background-attachment: fixed; color: #fff; height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+.landing-page #hero { background-image: linear-gradient(to top, rgba(18, 18, 18, 0.8) 0%, rgba(18, 18, 18, 0.2) 60%, transparent 100%), url('https://i.imgur.com/htNmvJK.jpeg'); background-size: cover; background-position: center top; background-attachment: fixed; color: #fff; height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
 .landing-page #hero h1 { font-size: 4rem; font-weight: 900; margin: 0; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
 .landing-page #hero p { font-size: 1.3rem; margin-top: 10px; text-shadow: 1px 1px 4px rgba(0,0,0,0.7); }
 .landing-page #intro, .landing-page #profiles, .landing-page #gallery-preview { padding: 100px 40px; text-align: center; }
