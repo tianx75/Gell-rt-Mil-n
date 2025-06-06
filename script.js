@@ -49,14 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         navUl.querySelectorAll('a').forEach(function(link) {
             link.addEventListener('click', function(e) {
-                // Csak akkor csukja be, ha oldalon belüli linkre (#) kattintunk
                 if (link.getAttribute('href').startsWith('#')) {
                     if (navUl.classList.contains('mobile-menu-open')) {
                         navUl.classList.remove('mobile-menu-open');
                         hamburgerIcon.classList.remove('active');
                     }
                 }
-                // Ha normál link, az oldalváltás amúgy is eltünteti.
             });
         });
     }
@@ -67,10 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxClose = document.querySelector('.lightbox-close');
         
-        // Az eseménykezelőt az egész dokumentumra tesszük, hogy a különböző galériákban is működjön
         document.addEventListener('click', function(e) {
             // Ellenőrizzük, hogy a kattintott elem egy galéria képe-e
-            if (e.target.matches('.gallery-grid img') || e.target.matches('.gallery-item img')) {
+            if (e.target.closest('.gallery-grid') && e.target.tagName === 'IMG') {
                 const imageSrc = e.target.src;
                 lightboxImage.src = imageSrc;
                 lightbox.hidden = false;
@@ -89,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', function(e) {
-            // Csak akkor záródjon be, ha a háttérre kattintunk, nem magára a képre
             if (e.target === lightbox) {
                 closeLightbox();
             }
