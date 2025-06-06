@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belépés</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+        :root { --dark-bg: #121212; --accent-color: #E74C3C; --light-text: #f0f0f0; --error-color: #e74c3c; --dot-color: #555; --border-color: #333; }
+        html, body { height: 100%; margin: 0; }
+        body { background-color: var(--dark-bg); color: var(--light-text); font-family: 'Montserrat', sans-serif; display: flex; justify-content: center; align-items: center; text-align: center; }
+        .login-container { width: 100%; padding: 20px; box-sizing: border-box; }
+        .login-box { max-width: 400px; margin: 0 auto; padding: 40px; background-color: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 8px; transition: opacity 0.5s ease; }
+        .login-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.2rem; color: var(--light-text); margin: 0 0 10px 0; }
+        .login-subtitle { font-size: 1rem; font-weight: 300; margin-bottom: 25px; }
+        .attempts-counter { margin-bottom: 25px; display: flex; justify-content: center; gap: 15px; }
+        .attempts-counter .dot { display: block; width: 12px; height: 12px; background-color: var(--accent-color); border-radius: 50%; transition: background-color 0.5s ease; }
+        .attempts-counter .dot.used { background-color: var(--dot-color); }
+        .password-field { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 4px; box-sizing: border-box; font-family: 'Montserrat', sans-serif; font-size: 1rem; background-color: #2b2b2b; color: var(--light-text); text-align: center; }
+        .password-field::placeholder { color: #888; }
+        .submit-button { background-color: var(--accent-color); color: var(--light-text); padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s ease; width: 100%; font-size: 1rem; }
+        .submit-button:hover { background-color: #c0392b; }
+        .error-message { color: var(--error-color); margin-top: 15px; height: 20px; font-weight: bold; }
+        .lockout-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2.5rem; color: var(--light-text); text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box" id="loginBox">
+            <h1 class="login-title">Gellért & Milán</h1>
+            <p class="login-subtitle">Az oldal megtekintéséhez belépési kód szükséges.</p>
+            <div class="attempts-counter" id="attemptsCounter"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <form id="passwordForm">
+                <input type="password" id="passwordInput" class="password-field" placeholder="Belépési kód">
+                <button type="submit" class="submit-button">Belépés</button>
+            </form>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+        <div class="lockout-message-container" id="lockoutMessageContainer" hidden>
+            <h1 class="lockout-title">IRÁNY A IKEA 😂</h1>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordForm = document.getElementById('passwordForm');
+            if (passwordForm) {
+                const passwordInput = document.getElementById('passwordInput');
+                const errorMessage = document.getElementById('errorMessage');
+                const loginBox = document.getElementById('loginBox');
+                const lockoutMessageContainer = document.getElementById('lockoutMessageContainer');
+                const correctPassword = "stilus"; 
+                let attemptsLeft = 3;
+
+                passwordForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); 
+                    if (attemptsLeft <= 0) return;
+
+                    if (passwordInput.value === correctPassword) {
+                        window.location.href = "landing.html"; 
+                    } else {
+                        attemptsLeft--; 
+                        const dots = document.querySelectorAll('#attemptsCounter .dot:not(.used)');
+                        if (dots.length > 0) {
+                            dots[dots.length - 1].classList.add('used');
+                        }
+                        
+                        if (attemptsLeft > 0) {
+                            errorMessage.textContent = `Hibás kód. Még ${attemptsLeft} próbálkozás maradt.`;
+                            passwordInput.value = ""; 
+                        } else {
+                            errorMessage.textContent = "";
+                            loginBox.style.opacity = '0';
+                            setTimeout(() => {
+                                loginBox.hidden = true;
+                                lockoutMessageContainer.hidden = false;
+                            }, 500); 
+                        }
+                    }
+                });
+                passwordInput.addEventListener('input', function() { errorMessage.textContent = ""; });
+            }
+        });
+    </script>
+</body>
+</html>
