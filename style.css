@@ -1,0 +1,37 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:wght@700&display=swap');
+
+/* === Változók === */
+:root {
+    /* Sötét téma (Katalógus, Login) */
+    --dark-bg: #1a1a1a;
+    --gold-accent: #b08d57;
+    --light-text: #f0f0f0;
+    --secondary-text: #cccccc; /* Világosabb szürke a jobb kontrasztért */
+    --error-color: #e74c3c;
+    --dot-color: #555;
+    --border-color-dark: #333;
+    
+    /* Világos téma (Level Up) */
+    --light-bg: #f7f7f7;
+    --dark-text-light-theme: #2c3e50;
+    --border-color-light: #ddd;
+}
+
+/* === ÁLTALÁNOS STÍLUSOK === */
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+/* === LOGIN OLDAL STÍLUSOK === */
+body.login-page { background-color: var(--dark-bg); color: var(--light-text); display: flex; justify-content: center; align-items: center; text-align: center; height: 100vh; }
+.login-container { width: 100%; padding: 20px; box-sizing: border-box; }
+.login-box { max-width: 400px; margin: 0 auto; padding: 40px; background-color: rgba(0,0,0,0.2); border: 1px solid var(--border-color-dark); border-radius: 8px; transition: opacity 0.5s ease; }
+.login-title { font-size: 2.5rem; color: var(--gold-accent); margin: 0 0 10px 0; }
+.login-subtitle { font-size: 1rem; font-weight: 300; margin-bottom: 25px; }
+.attempts-counter { margin-bottom: 25px; display: flex; justify-content: center; gap: 15px; }
+.attempts-counter .dot { display: block; width: 12px; height: 12px; background-color: var(--gold-accent); border-radius: 50%; transition: background-color 0.5s ease; }
+.attempts-counter .dot.used { background-color: var(--dot-color); }
+.password-field { width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #555; border-radius: 4px; box-sizing: border-box; font-family: 'Montserrat', sans-serif; font-size: 1rem; background-color: #2b2b2b; color: var(--light-text); text-align: center; }
+.password-field::placeholder { color: #888; }
+.submit-button { background-color: var(--gold-accent); color: var(--dark-bg); padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-family: 'Montserrat', sans-
